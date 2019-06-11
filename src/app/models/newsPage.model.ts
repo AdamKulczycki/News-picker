@@ -1,7 +1,7 @@
 import { News } from './news.model';
 
-export interface newsPage {
+export interface NewsPage {
     status: string;
     totalResults: number;
-    articles: News;
+    articles: News[];
 }

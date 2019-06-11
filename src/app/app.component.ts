@@ -1,16 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { NewsService } from './services/news.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  constructor(private newsService: NewsService) {}
+export class AppComponent {
+  constructor() {}
   title = 'news-picker';
-
-  ngOnInit() {
-    this.newsService.getNews().subscribe(res => console.log(res))
-  }
 }
