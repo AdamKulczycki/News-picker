@@ -1,5 +1,8 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { categoriesList } from './../shared/categories';
+import { countriesList } from './../shared/countries';
+import { NewsService } from '../services/news.service';
 
 @Component({
   selector: 'app-news-search',
@@ -7,51 +10,42 @@ import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./news-search.component.scss']
 })
 export class NewsSearchComponent implements OnInit {
-  constructor() {}
+  constructor(private newsService: NewsService) {}
 
-  @Output() getNews: EventEmitter<Array<object>> = new EventEmitter();
   searchFormSources: FormGroup;
   searchFormCountryCategory: FormGroup;
-  // onSubmit(form: NgForm) {
-  //   ///JAKOS LADNIE WYDOBYWAC PARAMETRY
-  //   console.log(form.value);
-  //   const v = Object.values(form.value);
-  //   const k = Object.keys(form.value);
 
-  //   let urlparams = '?'
-  //   for (let i=0; i<v.length; i++) {
-  //     urlparams += `${k[i]}=${v[i]}&`;
-  //   }
-  //   this.getNews.emit(urlparams);
-  // }
-
+  availableCategories = categoriesList;
+  availableCountries = countriesList;
   countrySwitch = true;
 
-  extractParamsFromObj(form: FormGroup) {
-    const params = [];
-    for (const i in form) {
-      if (i === 'parameters') {
-        for (const ii in form[i]) {
-          if (form[i][ii]) {
-            params.push({[ii]: form[i][ii]});
-          }
-        }
-      } else {
-        if (form[i]) {
-          params.push({[i]: form[i]});
-        }
-      }
-    }
-    return params;
-  }
+  // extractParamsFromObj(form: FormGroup) {
+  //   const params = [];
+  //   for (const i in form) {
+  //     if (i === 'parameters') {
+  //       for (const ii in form[i]) {
+  //         if (form[i][ii]) {
+  //           params.push({[ii]: form[i][ii]});
+  //         }
+  //       }
+  //     } else {
+  //       if (form[i]) {
+  //         params.push({[i]: form[i]});
+  //       }
+  //     }
+  //   }
+  //   return params;
+  // }
   onSubmitSources() {
-    const params = this.extractParamsFromObj(this.searchFormSources.value);
-    this.getNews.emit(params)
+    const {pageSize, parameters: {q, sources}} = this.searchFormSources.value;
+    const payload = {pageSize, q, sources};
+    this.newsService.setParams(payload);
   }
 
   onSubmitCountryCategory() {
-    const params = this.extractParamsFromObj(this.searchFormCountryCategory.value);
-    this.getNews.emit(params)
+    const {pageSize, parameters: {country, category, q}} = this.searchFormCountryCategory.value;
+    const payload = {pageSize, q, country, category};
+    this.newsService.setParams(payload);
   }
 
   reqOneParam(formGroup: FormGroup): {[s: string]: boolean} {

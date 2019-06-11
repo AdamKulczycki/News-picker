@@ -9,6 +9,7 @@ import { NewsSearchComponent } from './news-search/news-search.component';
 import { NewsListComponent } from './news-list/news-list.component';
 import { NewsItemComponent } from './news-item/news-item.component';
 import { NewsComponent } from './news/news.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NewsComponent } from './news/news.component';
     NewsSearchComponent,
     NewsListComponent,
     NewsItemComponent,
-    NewsComponent
+    NewsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

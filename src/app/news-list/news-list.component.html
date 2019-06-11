@@ -1,1 +1,4 @@
 <app-news-item *ngFor="let newsItem of news" [newsItem]="newsItem"></app-news-item>
+<div *ngIf="news?.length > 0">
+    <span *ngIf="isPreviousAvaiable()" (click)="previousPage()">BACK</span><span *ngIf="isNextAvaiable()" (click)="nextPage()">NEXT</span>
+</div>
