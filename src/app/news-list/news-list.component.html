@@ -1,4 +1,19 @@
-<app-news-item *ngFor="let newsItem of news" [newsItem]="newsItem"></app-news-item>
-<div *ngIf="news?.length > 0">
-    <span *ngIf="isPreviousAvaiable()" (click)="previousPage()">BACK</span><span *ngIf="isNextAvaiable()" (click)="nextPage()">NEXT</span>
+<div class="news-list__wrapper">
+  <div class="news-list">
+    <app-news-item *ngFor="let newsItem of news" [newsItem]="newsItem"></app-news-item>
+  </div>
+  <div *ngIf="news?.length > 0" class="navigation">
+    <div>
+        <button (click)="previousPage()" class="navigation__control" [disabled]="!isPreviousAvaiable()">
+            <i class="fas fa-arrow-alt-circle-left navigation__arrow navigation__arrow--left"></i>
+            BACK
+        </button>
+    </div>
+    <div>
+        <button (click)="nextPage()" class="navigation__control" [disabled]="!isNextAvaiable()">
+            NEXT
+            <i class="fas fa-arrow-alt-circle-right navigation__arrow navigation__arrow--right"></i>
+        </button>
+    </div>
+  </div>
 </div>

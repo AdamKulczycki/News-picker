@@ -30,11 +30,11 @@ export class NewsListComponent implements OnInit, OnDestroy{
   }
 
   nextPage() {
-    this.newsService.changePageForward(true);
+    this.newsService.changePageToNext(true);
   }
 
   previousPage() {
-    this.newsService.changePageForward(false);
+    this.newsService.changePageToNext(false);
   }
 
   ngOnDestroy() {

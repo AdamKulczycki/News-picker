@@ -19,23 +19,10 @@ export class NewsSearchComponent implements OnInit {
   availableCountries = countriesList;
   countrySwitch = true;
 
-  // extractParamsFromObj(form: FormGroup) {
-  //   const params = [];
-  //   for (const i in form) {
-  //     if (i === 'parameters') {
-  //       for (const ii in form[i]) {
-  //         if (form[i][ii]) {
-  //           params.push({[ii]: form[i][ii]});
-  //         }
-  //       }
-  //     } else {
-  //       if (form[i]) {
-  //         params.push({[i]: form[i]});
-  //       }
-  //     }
-  //   }
-  //   return params;
-  // }
+  switchMode() {
+    this.countrySwitch = !this.countrySwitch;
+  }
+
   onSubmitSources() {
     const {pageSize, parameters: {q, sources}} = this.searchFormSources.value;
     const payload = {pageSize, q, sources};
@@ -46,6 +33,26 @@ export class NewsSearchComponent implements OnInit {
     const {pageSize, parameters: {country, category, q}} = this.searchFormCountryCategory.value;
     const payload = {pageSize, q, country, category};
     this.newsService.setParams(payload);
+  }
+
+  checkControls(form: FormGroup) {
+    if (form.controls.parameters.errors && !form.controls.parameters.errors.zeroParams) {
+      for (const control of Object.values(form.controls.parameters['controls'])) {
+        if (!control['touched']) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+
+  resetSForm() {
+    this.searchFormSources.reset();
+  }
+
+  resetCCForm() {
+    this.searchFormCountryCategory.reset();
   }
 
   reqOneParam(formGroup: FormGroup): {[s: string]: boolean} {

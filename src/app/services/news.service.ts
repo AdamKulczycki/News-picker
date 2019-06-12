@@ -33,35 +33,20 @@ export class NewsService {
       ...(!!pageSize && { pageSize }) || { pageSize: 20 },
       ...(!!page && { page }) || { page: 1 }
     };
-    // this.requestParams = Object.entries(params)
-    //   .filter(([key, value]) => {
-    //     return !!value;
-    //   })
-    //   .reduce((test, [key, value]) => {
-    //     test[key] = value;
-    //     return test;
-    //   }, {});
-
-    // if (!this.requestParams['pageSize']) { this.requestParams['pageSize'] = 20; }
-    // if (!this.requestParams['page']) { this.requestParams['page'] = 1; }
-    // this.requestParams['pageSize']
-    //   ? (this.pageSize = this.requestParams['pageSize'])
-    //   : (this.pageSize = 20);
-    console.log(this.requestParams);
 
     this.getNews(this.requestParams);
   }
 
   isLastPage() {
-    return this.requestParams['page'] * this.requestParams['pageSize'] >= this.totalResults;
+    return this.requestParams.page * this.requestParams.pageSize >= this.totalResults;
   }
 
   isFirstPage() {
-    return this.requestParams['page'] === 1;
+    return this.requestParams.page === 1;
   }
 
-  changePageForward(next: boolean) {
-    next ? this.requestParams['page'] = this.requestParams['page'] + 1 : this.requestParams['page'] = this.requestParams['page'] - 1;
+  changePageToNext(next: boolean) {
+    next ? this.requestParams.page = this.requestParams.page + 1 : this.requestParams.page = this.requestParams.page - 1;
     this.getNews(this.requestParams);
   }
 

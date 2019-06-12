@@ -1,8 +1,12 @@
-<div class="news">
-  <div>
-    <span>{{newsItem.author}}</span><span>{{newsItem.publishedAt}}</span>
+<article class="article">
+  <div class="article__photo">
+    <img src="{{newsItem.urlToImage}}" alt="Photo referring to article" class="article__image">
   </div>
-  <div>
-    {{newsItem.title}}
+  <div class="article__info">
+    <div class="article__title">{{newsItem.title}}</div>
+    <div class="article__creation-info">
+      <div class="article__author"><i class="far fa-user article__icon"></i>{{newsItem.author || 'author unknown'}}</div>
+      <div class="article__date"><i class="far fa-calendar-alt article__icon"></i>{{(newsItem.publishedAt | date) || 'date unknown'}}</div>
+    </div>
   </div>
-</div>
+</article>

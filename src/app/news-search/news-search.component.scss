@@ -1,10 +1,28 @@
+@import '../variables.scss';
+
 .search-form {
     max-width: 50rem;
-    margin: 0 auto;
-    padding: 1.5rem;
+    margin: 0 auto 5rem auto;
+    padding: 1rem 4rem;
     display: flex;
     flex-direction: column;
-    border: 1px solid blue;
+    background-color: $offset-color;
+
+    &__header {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    &__message {
+        margin-top: 0;
+        color: $secondary-color;
+        font-size: 1.5rem;
+    }
+
+    &__info {
+        color: $main-color;
+        font-size: 1rem;
+    }
 }
 
 .form-switch {
@@ -14,6 +32,7 @@
 
     &__divider {
         font-size: 2rem;
+        color: $secondary-color;
     }
 
     &__label {
@@ -22,15 +41,25 @@
         flex-direction: row;
         align-items: center;
     }
+    &__option {
+        transition: color .5s, opacity .5s;
+        color: $main-color;
+
+        &--inactive {
+            opacity: .3;
+        }
+    }
 }
 
 .form {
     display: flex;
     flex-direction: column;
+    // padding: 0 10px;
 
     &__group {
         display: flex;
         flex-direction: column;
+        // padding: 5px;
 
         &--row {
             display: flex;
@@ -43,21 +72,76 @@
         flex-direction: column;
         flex-grow: 1;
         margin-bottom: 10px;
+        // padding: 5px;
 
-        &:first-child {
+        &--space {
             margin-right: 1rem;
         }
+    }
+
+    &__warning {
+        color: rgb(255, 50, 50);
+        margin: 0 auto;
     }
 
     &__input {
         height: 2rem;
         padding-left: 1rem;
+        // box-sizing: border-box;
     }
 
     &__label {
+        color: $main-color;
         text-transform: capitalize;
     }
+
+    &__button-wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 14px;
+    }
+
+    &__button {
+        padding: 10px 25px;
+        letter-spacing: 3px;
+        font-size: 1rem;
+        text-transform: capitalize;
+        font-weight: bold;
+
+        &--reset {
+            color: $secondary-color;
+            transition: color .5s;
+
+            &:hover {
+                color: $main-color;
+                cursor: pointer;
+            }
+        }
+
+        &--send {
+            border: none;
+            background-color: $secondary-color;
+            color: $offset-color;
+            transition: background-color .5s, opacity .5s;
+
+            &:hover:enabled {
+                background-color: $main-color;
+                cursor: pointer;
+            }
+
+            &:disabled {
+                opacity: 0.5;
+            }
+        }
+    }
+
+    &__hint {
+        text-transform: lowercase;
+        font-size: 0.8rem;
+    }
 }
+
 
 // .form-switch {
 //     display: flex;
@@ -109,23 +193,23 @@
         
         
 //     }
-//     input[type=text], input[type=number], select{   
-//         appearance: none;
+    // input[type=text], input[type=number], select{   
+    //     appearance: none;
     
-//         border-radius: 5px;
-//         border: 1px solid #BBB;
-//         padding: 8px;
-//         line-height: 20px;
-//         // text-align: center;
-//         background: white;
-//         outline: none;
+    //     border-radius: 5px;
+    //     border: 1px solid #BBB;
+    //     padding: 8px;
+    //     line-height: 20px;
+    //     // text-align: center;
+    //     background: white;
+    //     outline: none;
 
-//         &:focus {
-//             // outline: solid 5px #FC5185;
-//             transition: box-shadow 1s ease;
-//             box-shadow: 0 0 0 1pt lightblue;
-//         }
-//     }
+    //     &:focus {
+    //         // outline: solid 5px #FC5185;
+    //         transition: box-shadow 1s ease;
+    //         box-shadow: 0 0 0 1pt lightblue;
+    //     }
+    // }
 
 //     &--button-wrap {
 //         display: flex;

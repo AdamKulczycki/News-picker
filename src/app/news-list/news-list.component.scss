@@ -1,0 +1,53 @@
+@import '../variables.scss';
+
+.news-list__wrapper {
+    margin: 0 auto 50px auto;
+}
+.news-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+
+    &__control{
+        padding: 10px 20px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        color: $secondary-color;
+        background-color: $offset-color;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        transition: color .5s, background-color .5s, opacity .5s;
+        border: none;
+        cursor: pointer;
+
+        &:hover:enabled {
+            color: $offset-color;
+            background-color: $secondary-color;
+        }
+
+        &:disabled {
+            cursor: default;
+            opacity: 0.3;
+        }
+    }
+
+    &__arrow {
+        font-size: 2rem;
+
+        &--right {
+            padding-left: 1rem;
+        }
+        &--left {
+            padding-right: 1rem;
+        }
+    }
+
+}
