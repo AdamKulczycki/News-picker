@@ -8,6 +8,7 @@ export interface RequestParams {
   country?: string;
   category?: string;
   q?: string;
+  sources?: string;
   pageSize?: number;
   page?: number;
 }
@@ -18,18 +19,16 @@ export interface RequestParams {
 export class NewsService {
   constructor(private http: HttpClient) {}
   newsPage = new Subject<NewsPage>();
-
-  // page: number;
-  // pageSize: number;
   totalResults: number;
   requestParams: RequestParams;
 
   setParams(params: RequestParams) {
-    const {country, category, q, pageSize, page} = params;
+    const {country, category, q, pageSize, page, sources} = params;
     this.requestParams = {
       ...!!country && { country },
       ...!!category && { category },
       ...!!q && { q },
+      ...!!sources && { sources },
       ...(!!pageSize && { pageSize }) || { pageSize: 20 },
       ...(!!page && { page }) || { page: 1 }
     };
@@ -56,13 +55,13 @@ export class NewsService {
       httpParams = httpParams.append(key, value);
     });
 
-    console.log(httpParams.toString());
     this.http
       .get<NewsPage>(
         `https://newsapi.org/v2/top-headlines?apiKey=${environment.api_key}`,
         { params: httpParams }
       )
       .subscribe(newsPageRes => {
+        console.log(newsPageRes);
         this.newsPage.next(newsPageRes);
         this.totalResults = newsPageRes.totalResults;
       });

@@ -42,7 +42,7 @@
         <i class="fas fa-exclamation-circle"></i> number has to be between 1 and 100
     </span>
     <div class="form__button-wrap">
-      <span class="form__button form__button--reset" (click)="resetSForm()">reset</span>
+      <span class="form__button form__button--reset" (click)="resetForm(this.searchFormSources)">reset</span>
       <button type="submit" [disabled]="!searchFormSources.valid" class="form__button form__button--send">send</button>
     </div>
   </form>
@@ -80,7 +80,7 @@
         <i class="fas fa-exclamation-circle"></i> number has to be between 1 and 100
     </span>
     <div class="form__button-wrap">
-      <span class="form__button form__button--reset" (click)="resetCCForm()">reset</span>
+      <span class="form__button form__button--reset" (click)="resetForm(this.searchFormCountryCategory)">reset</span>
       <button type="submit" [disabled]="!searchFormCountryCategory.valid" class="form__button form__button--send">send</button>
     </div>
   </form>

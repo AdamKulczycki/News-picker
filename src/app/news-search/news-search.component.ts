@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { categoriesList } from './../shared/categories';
 import { countriesList } from './../shared/countries';
@@ -26,6 +26,7 @@ export class NewsSearchComponent implements OnInit {
   onSubmitSources() {
     const {pageSize, parameters: {q, sources}} = this.searchFormSources.value;
     const payload = {pageSize, q, sources};
+    console.log(this.searchFormSources.value);
     this.newsService.setParams(payload);
   }
 
@@ -47,16 +48,16 @@ export class NewsSearchComponent implements OnInit {
     return false;
   }
 
-  resetSForm() {
-    this.searchFormSources.reset();
+  resetForm(form: FormGroup) {
+    form.reset();
   }
 
-  resetCCForm() {
-    this.searchFormCountryCategory.reset();
-  }
+  // resetCCForm() {
+  //   this.searchFormCountryCategory.reset();
+  // }
 
   reqOneParam(formGroup: FormGroup): {[s: string]: boolean} {
-    for (const key in formGroup.controls){
+    for (const key in formGroup.controls) {
       if (formGroup.controls.hasOwnProperty(key)) {
         const control: FormControl = formGroup.controls[key] as FormControl;
         if (control.value) {
@@ -64,7 +65,7 @@ export class NewsSearchComponent implements OnInit {
         }
       }
     }
-    return { zeroParams: false };
+    return { zeroParams: true };
   }
 
 
