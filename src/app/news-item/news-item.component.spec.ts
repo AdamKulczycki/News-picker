@@ -1,11 +1,12 @@
 import { TestBed, async } from '@angular/core/testing';
 import { NewsItemComponent } from './news-item.component';
 import { News } from '../models/news.model';
+import { CutTextPipe } from '../pipes/cut-text.pipe';
 
 describe('NewsItem', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NewsItemComponent]
+      declarations: [NewsItemComponent, CutTextPipe]
     }).compileComponents();
   }));
 
@@ -21,7 +22,7 @@ describe('NewsItem', () => {
     });
     it('should render News from Input', () => {
         const { component, fixture } = setup();
-        let expectedInputNews: News = {
+        const expectedInputNews: News = {
             source: {
                 id: '1',
                 name: 'bbc'

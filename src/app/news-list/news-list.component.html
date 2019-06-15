@@ -1,6 +1,6 @@
-<div class="news-list__wrapper">
+<div class="news-list-wrapper">
   <div class="news-list">
-    <app-news-item *ngFor="let newsItem of news" [newsItem]="newsItem" style="width:45%"></app-news-item>
+    <app-news-item *ngFor="let newsItem of news" [newsItem]="newsItem"></app-news-item>
   </div>
   <div *ngIf="news?.length > 0" class="navigation">
     <div>

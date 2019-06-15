@@ -1,13 +1,20 @@
 @import '../variables.scss';
 
-.news-list__wrapper {
+.news-list-wrapper {
     margin: 0 auto 50px auto;
+    font-family: 'Merriweather', serif;
 }
 .news-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    @media only screen and (max-width: 1100px) {
+        & {
+            flex-direction: column;
+        }
+    }
 }
 .navigation {
     display: flex;

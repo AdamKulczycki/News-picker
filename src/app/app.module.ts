@@ -10,6 +10,10 @@ import { NewsListComponent } from './news-list/news-list.component';
 import { NewsItemComponent } from './news-item/news-item.component';
 import { NewsComponent } from './news/news.component';
 import { FooterComponent } from './footer/footer.component';
+import { CutTextPipe } from './pipes/cut-text.pipe';
+import { EllipsisModule } from 'ngx-ellipsis';
+import { ErrorPopupComponent } from './error-popup/error-popup.component';
+
 
 @NgModule({
   declarations: [
@@ -18,14 +22,17 @@ import { FooterComponent } from './footer/footer.component';
     NewsListComponent,
     NewsItemComponent,
     NewsComponent,
-    FooterComponent
+    FooterComponent,
+    CutTextPipe,
+    ErrorPopupComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EllipsisModule
   ],
   providers: [],
   bootstrap: [AppComponent]

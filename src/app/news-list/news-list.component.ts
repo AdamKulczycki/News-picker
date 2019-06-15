@@ -31,13 +31,18 @@ export class NewsListComponent implements OnInit, OnDestroy{
 
   nextPage() {
     this.newsService.changePageToNext(true);
+    this.news = [];
+    window.scroll(0, 0);
   }
 
   previousPage() {
     this.newsService.changePageToNext(false);
+    this.news = [];
+    window.scroll(0, 0);
   }
 
   ngOnDestroy() {
     this.newsServiceSubscription.unsubscribe();
   }
+
 }

@@ -3,11 +3,12 @@
     <img src="{{newsItem.urlToImage}}" onerror="this.src='https://splashbase.s3.amazonaws.com/unsplash/regular/tumblr_mopq69jlcS1st5lhmo1_1280.jpg'" alt="Photo referring to article" class="article__image">
   </div>
   <div class="article__info">
-    <div class="article__title">{{newsItem.title}}</div>
-    <div class="article__description">{{newsItem.description}}</div>
+    <div class="article__title" ellipsis>{{newsItem.title}}</div>
+    <div class="article__description" ellipsis>{{newsItem?.description || 'no description from source'}}</div>
     <div class="article__creation-info">
-      <div class="article__author"><i class="far fa-user article__icon"></i>{{newsItem.author || 'author unknown'}}</div>
+      <div class="article__author" [ngClass]="{'article__author--unknown': !newsItem.author}"><i class="far fa-user article__icon"></i>{{newsItem.author || 'author unknown'}}</div>
       <div class="article__date"><i class="far fa-calendar-alt article__icon"></i>{{(newsItem.publishedAt | date) || 'date unknown'}}</div>
+      <div class="article__source"><a href="{{newsItem.url}}" class="article__link"><i class="fas fa-external-link-alt article__icon"></i>source</a></div>
     </div>
   </div>
 </article>

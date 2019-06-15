@@ -5,12 +5,13 @@ import { NewsItemComponent } from '../news-item/news-item.component';
 import { NewsService } from '../services/news.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NewsPage } from '../models/newsPage.model';
+import { CutTextPipe } from '../pipes/cut-text.pipe';
 
 
 describe('NewsListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NewsListComponent, NewsItemComponent],
+      declarations: [NewsListComponent, NewsItemComponent, CutTextPipe],
       imports: [HttpClientTestingModule],
       providers: [NewsService]
     }).compileComponents();

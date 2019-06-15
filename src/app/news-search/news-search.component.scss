@@ -1,8 +1,19 @@
 @import '../variables.scss';
 
+.form-wrapper {
+    font-family: 'Merriweather', serif;
+}
+
+.form-photo {
+    height: 25rem;
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+}
+
 .search-form {
-    max-width: 50rem;
-    margin: 0 auto 5rem auto;
+    max-width: 45rem;
+    min-width: 25rem;
+    margin: -20rem auto 5rem auto;
     padding: 1rem 4rem;
     display: flex;
     flex-direction: column;
@@ -23,12 +34,16 @@
         color: $main-color;
         font-size: 1rem;
     }
+
 }
 
 .form-switch {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: center;
 
     &__divider {
         font-size: 2rem;

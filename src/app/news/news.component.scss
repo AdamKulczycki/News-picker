@@ -1,5 +1,15 @@
-.app {
-    max-width: 90vw;
-    min-width: 20rem;
-    margin: 0 auto;
+@import '../variables.scss';
+// .app {
+//     max-width: 90vw;
+//     min-width: 20rem;
+//     margin: 0 auto;
+// }
+
+.result-info {
+    text-align: center;
+
+    &--icon {
+        color: $offset-color;
+    }
+
 }

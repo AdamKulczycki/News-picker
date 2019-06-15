@@ -5,11 +5,12 @@ import { NewsSearchComponent } from '../news-search/news-search.component';
 import { NewsItemComponent } from '../news-item/news-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CutTextPipe } from '../pipes/cut-text.pipe';
 
 describe('NewsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NewsComponent, NewsListComponent, NewsSearchComponent, NewsItemComponent],
+      declarations: [NewsComponent, NewsListComponent, NewsSearchComponent, NewsItemComponent, CutTextPipe],
       imports: [ReactiveFormsModule, HttpClientTestingModule]
     }).compileComponents();
   }));
