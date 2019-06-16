@@ -1,6 +1,6 @@
 <div class="form-wrapper">
  <div class="form-photo"></div>
-  <div class="search-form">
+  <div class="search-form"  [@fadeInOut]>
     <div class="search-form__header">
       <p class="search-form__message">Find news from all over the World</p>
       <p class="search-form__info">search for articles using many options with switch mode</p>
@@ -21,7 +21,7 @@
       </div>
     </div>
   
-    <form [formGroup]="searchFormSources" (ngSubmit)="onSubmitSources()" *ngIf="!countrySwitch" class="form">
+    <form [formGroup]="searchFormSources" (ngSubmit)="onSubmitSources()" *ngIf="!countrySwitch" class="form" >
       <div formGroupName="parameters" class="form__group">
         <div class="form__control">
           <label for="sources" class="form__label">sources <span class="form__hint">(separate by comma)</span></label>
@@ -44,7 +44,7 @@
       </span>
       <div class="form__button-wrap">
         <span class="form__button form__button--reset" (click)="resetForm(this.searchFormSources)">reset</span>
-        <button type="submit"  class="form__button form__button--send">send</button>
+        <button type="submit"   class="form__button form__button--send">send</button>
       </div>
     </form>
   

@@ -11,7 +11,6 @@ export class PopupService {
   popupSubject = new Subject<string>();
 
   errorDecode(err) {
-    console.log(err)
     let message = '';
     err.error.message ? message = err.error.message : message = 'Unexpected Error Occurred';
     this.popupSubject.next(message);

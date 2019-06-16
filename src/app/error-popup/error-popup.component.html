@@ -1,4 +1,4 @@
-<div class="error" *ngIf="show" (click)="close()">
+<div class="error" [@fadeInOut] (@fadeInOut.done)="animationControler($event)" *ngIf="show" (click)="close()">
   <p class="error--heading">
     Error
   </p>

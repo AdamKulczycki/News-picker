@@ -10,9 +10,10 @@ import { NewsListComponent } from './news-list/news-list.component';
 import { NewsItemComponent } from './news-item/news-item.component';
 import { NewsComponent } from './news/news.component';
 import { FooterComponent } from './footer/footer.component';
-import { CutTextPipe } from './pipes/cut-text.pipe';
 import { EllipsisModule } from 'ngx-ellipsis';
 import { ErrorPopupComponent } from './error-popup/error-popup.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -23,7 +24,6 @@ import { ErrorPopupComponent } from './error-popup/error-popup.component';
     NewsItemComponent,
     NewsComponent,
     FooterComponent,
-    CutTextPipe,
     ErrorPopupComponent,
   ],
   imports: [
@@ -32,7 +32,8 @@ import { ErrorPopupComponent } from './error-popup/error-popup.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    EllipsisModule
+    EllipsisModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,11 +3,32 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { categoriesList } from './../shared/categories';
 import { countriesList } from './../shared/countries';
 import { NewsService } from '../services/news.service';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate
+} from '@angular/animations';
 
 @Component({
   selector: 'app-news-search',
   templateUrl: './news-search.component.html',
-  styleUrls: ['./news-search.component.scss']
+  styleUrls: ['./news-search.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      state(
+        'void',
+        style({
+          transform: 'translateY(-100px)'
+        })
+      ),
+      transition('void => *', [
+        style({ opacity: 0 }),
+        animate(500, style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ])
+  ]
 })
 export class NewsSearchComponent implements OnInit {
   constructor(private newsService: NewsService) {}

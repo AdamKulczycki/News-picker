@@ -16,7 +16,6 @@ export class NewsListComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.newsServiceSubscription = this.newsService.newsPage.subscribe(response => {
-      console.log(response);
       this.news = response.articles;
     });
   }
