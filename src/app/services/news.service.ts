@@ -25,21 +25,23 @@ export class NewsService {
   requestParams: RequestParams;
 
   setParams(params: RequestParams) {
-    const {country, category, q, pageSize, page, sources} = params;
+    const { country, category, q, pageSize, page, sources } = params;
     this.requestParams = {
-      ...!!country && { country },
-      ...!!category && { category },
-      ...!!q && { q },
-      ...!!sources && { sources },
-      ...(!!pageSize && { pageSize }) || { pageSize: 20 },
-      ...(!!page && { page }) || { page: 1 }
+      ...(!!country && { country }),
+      ...(!!category && { category }),
+      ...(!!q && { q }),
+      ...(!!sources && { sources }),
+      ...((!!pageSize && { pageSize }) || { pageSize: 20 }),
+      ...((!!page && { page }) || { page: 1 })
     };
 
     this.getNews(this.requestParams);
   }
 
   isLastPage() {
-    return this.requestParams.page * this.requestParams.pageSize >= this.totalResults;
+    return (
+      this.requestParams.page * this.requestParams.pageSize >= this.totalResults
+    );
   }
 
   isFirstPage() {
@@ -47,7 +49,9 @@ export class NewsService {
   }
 
   changePageToNext(next: boolean) {
-    next ? this.requestParams.page = this.requestParams.page + 1 : this.requestParams.page = this.requestParams.page - 1;
+    next
+      ? (this.requestParams.page = this.requestParams.page + 1)
+      : (this.requestParams.page = this.requestParams.page - 1);
     this.getNews(this.requestParams);
   }
 
@@ -59,15 +63,20 @@ export class NewsService {
     });
 
     this.http
-      .get<NewsPage>(`https://newsapi.org/v2/top-headlines?apiKey=${environment.api_key}`, { params: httpParams })
-      .subscribe(newsPageRes => {
-        this.pendingStatus.next(false);
-        this.newsPage.next(newsPageRes);
-        this.totalResults = newsPageRes.totalResults;
-      },
-      (err: any) => {
-        this.pendingStatus.next(false);
-        this.popupService.errorDecode(err);
-      });
+      .get<NewsPage>(
+        `https://newsapi.org/v2/top-headlines?apiKey=${environment.api_key}`,
+        { params: httpParams }
+      )
+      .subscribe(
+        newsPageRes => {
+          this.pendingStatus.next(false);
+          this.newsPage.next(newsPageRes);
+          this.totalResults = newsPageRes.totalResults;
+        },
+        (err: any) => {
+          this.pendingStatus.next(false);
+          this.popupService.errorDecode(err);
+        }
+      );
   }
 }

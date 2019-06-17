@@ -14,8 +14,6 @@ import { EllipsisModule } from 'ngx-ellipsis';
 import { ErrorPopupComponent } from './error-popup/error-popup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NewsItemComponent,
     NewsComponent,
     FooterComponent,
-    ErrorPopupComponent,
+    ErrorPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +31,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     EllipsisModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,12 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { News } from '../models/news.model';
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate
-} from '@angular/animations';
+import { trigger, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-news-item',
@@ -16,14 +10,13 @@ import {
     trigger('fadeInOut', [
       transition('void => *', [
         style({ opacity: 0 }),
-        animate(1000, style({ opacity: 1}))
-      ]),
+        animate(1000, style({ opacity: 1 }))
+      ])
     ])
   ]
 })
 export class NewsItemComponent {
-
-  constructor() { }
+  constructor() {}
 
   @Input() newsItem: News;
 }

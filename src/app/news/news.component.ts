@@ -20,7 +20,7 @@ export class NewsComponent implements OnInit, OnDestroy {
       this.ifSearched = true;
       this.pending = res;
     });
-    
+
     this.resultsSubscription = this.newsService.newsPage.subscribe(res => {
       res.articles.length > 0 ? this.noResults = false : this.noResults = true;
     });

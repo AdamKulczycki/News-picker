@@ -40,9 +40,11 @@ export class ErrorPopupComponent implements OnInit, OnDestroy {
   popupServiceSubscription: Subscription;
 
   ngOnInit() {
-    this.popupService.popupSubject.subscribe(errorMessage => {
-      this.setPopup(errorMessage);
-    });
+    this.popupServiceSubscription = this.popupService.popupSubject.subscribe(
+      errorMessage => {
+        this.setPopup(errorMessage);
+      }
+    );
   }
 
   setPopup(message) {

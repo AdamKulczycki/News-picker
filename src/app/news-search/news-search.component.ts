@@ -39,45 +39,73 @@ export class NewsSearchComponent implements OnInit {
   availableCategories = categoriesList;
   availableCountries = countriesList;
   countrySwitch = true;
+  isSubmittedSources = false;
+  isSubmittedCC = false;
+
+  ngOnInit() {
+    this.searchFormSources = new FormGroup({
+      parameters: new FormGroup(
+        {
+          sources: new FormControl(null),
+          q: new FormControl(null)
+        },
+        this.reqOneParam
+      ),
+      pageSize: new FormControl(null, [Validators.max(100), Validators.min(1)])
+    });
+    this.searchFormCountryCategory = new FormGroup({
+      parameters: new FormGroup(
+        {
+          country: new FormControl(null),
+          category: new FormControl(null),
+          q: new FormControl(null)
+        },
+        this.reqOneParam
+      ),
+      pageSize: new FormControl(null, [Validators.max(100), Validators.min(1)])
+    });
+  }
 
   switchMode() {
     this.countrySwitch = !this.countrySwitch;
   }
 
   onSubmitSources() {
-    const {pageSize, parameters: {q, sources}} = this.searchFormSources.value;
-    const payload = {pageSize, q, sources};
-    console.log(this.searchFormSources.value);
-    this.newsService.setParams(payload);
+    if (this.searchFormSources.valid) {
+      const {
+        pageSize,
+        parameters: { q, sources }
+      } = this.searchFormSources.value;
+      const payload = { pageSize, q, sources };
+      this.newsService.setParams(payload);
+    } else {
+      this.isSubmittedSources = true;
+    }
   }
 
   onSubmitCountryCategory() {
-    const {pageSize, parameters: {country, category, q}} = this.searchFormCountryCategory.value;
-    const payload = {pageSize, q, country, category};
-    this.newsService.setParams(payload);
-  }
-
-  checkControls(form: FormGroup) {
-    if (form.controls.parameters.errors && !form.controls.parameters.errors.zeroParams) {
-      for (const control of Object.values(form.controls.parameters['controls'])) {
-        if (!control['touched']) {
-          return false;
-        }
-      }
-      return true;
+    if (this.searchFormCountryCategory.valid) {
+      const {
+        pageSize,
+        parameters: { country, category, q }
+      } = this.searchFormCountryCategory.value;
+      const payload = { pageSize, q, country, category };
+      this.newsService.setParams(payload);
+    } else {
+      this.isSubmittedCC = true;
     }
-    return false;
   }
 
-  resetForm(form: FormGroup) {
-    form.reset();
+  resetFormSources() {
+    this.searchFormSources.reset();
+    this.isSubmittedSources = false;
+  }
+  resetFormCC() {
+    this.searchFormCountryCategory.reset();
+    this.isSubmittedCC = false;
   }
 
-  // resetCCForm() {
-  //   this.searchFormCountryCategory.reset();
-  // }
-
-  reqOneParam(formGroup: FormGroup): {[s: string]: boolean} {
+  reqOneParam(formGroup: FormGroup): { [s: string]: boolean } {
     for (const key in formGroup.controls) {
       if (formGroup.controls.hasOwnProperty(key)) {
         const control: FormControl = formGroup.controls[key] as FormControl;
@@ -87,24 +115,5 @@ export class NewsSearchComponent implements OnInit {
       }
     }
     return { zeroParams: true };
-  }
-
-
-  ngOnInit() {
-    this.searchFormSources = new FormGroup({
-      'parameters': new FormGroup({
-        'sources': new FormControl(null),
-        'q': new FormControl(null),
-      }, this.reqOneParam),
-      'pageSize': new FormControl(null, [Validators.max(100), Validators.min(1)])
-    });
-    this.searchFormCountryCategory = new FormGroup({
-      'parameters': new FormGroup({
-        'country': new FormControl(null),
-        'category': new FormControl(null),
-        'q': new FormControl(null),
-      }, this.reqOneParam),
-      'pageSize': new FormControl(null, [Validators.max(100), Validators.min(1)])
-    });
   }
 }

@@ -4,7 +4,7 @@ import { FooterComponent } from './footer.component';
 describe('Footer component', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
+      declarations: [FooterComponent]
     });
   });
 
@@ -24,8 +24,9 @@ describe('Footer component', () => {
       const { fixture } = setup();
       const compiled = fixture.debugElement.nativeElement;
       fixture.detectChanges();
-      expect(compiled.querySelector('p.footer__message').textContent).toContain('powered by NewsAPI.org');
+      expect(compiled.querySelector('p.footer__message').textContent).toContain(
+        'powered by NewsAPI.org'
+      );
     }));
-
   });
 });

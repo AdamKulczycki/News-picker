@@ -1,10 +1,10 @@
 .app {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    min-width: 580px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 400px;
 }
 
 .content-wrapper {
-    flex-grow: 1;
+  flex-grow: 1;
 }

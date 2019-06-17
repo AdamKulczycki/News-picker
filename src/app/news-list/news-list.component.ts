@@ -8,16 +8,17 @@ import { NewsService } from '../services/news.service';
   templateUrl: './news-list.component.html',
   styleUrls: ['./news-list.component.scss']
 })
-export class NewsListComponent implements OnInit, OnDestroy{
-
+export class NewsListComponent implements OnInit, OnDestroy {
   constructor(private newsService: NewsService) {}
   newsServiceSubscription: Subscription;
   news: News[];
 
   ngOnInit() {
-    this.newsServiceSubscription = this.newsService.newsPage.subscribe(response => {
-      this.news = response.articles;
-    });
+    this.newsServiceSubscription = this.newsService.newsPage.subscribe(
+      response => {
+        this.news = response.articles;
+      }
+    );
   }
 
   isPreviousAvaiable() {
@@ -43,5 +44,4 @@ export class NewsListComponent implements OnInit, OnDestroy{
   ngOnDestroy() {
     this.newsServiceSubscription.unsubscribe();
   }
-
 }

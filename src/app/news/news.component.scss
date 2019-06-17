@@ -1,15 +1,9 @@
 @import '../variables.scss';
-// .app {
-//     max-width: 90vw;
-//     min-width: 20rem;
-//     margin: 0 auto;
-// }
 
 .result-info {
-    text-align: center;
+  text-align: center;
 
-    &--icon {
-        color: $offset-color;
-    }
-
+  &--icon {
+    color: $offset-color;
+  }
 }
