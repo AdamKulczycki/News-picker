@@ -1,6 +1,6 @@
 # NewsPicker
 
-Project will allow You to search for top-headlines
+Project which will allow You to search for top-headlines from around the world.
 
 ## Install dependencies
 
